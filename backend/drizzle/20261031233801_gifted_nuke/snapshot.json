@@ -1,0 +1,55 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "d6906043-35ea-4bf5-98d3-3b99d90c63ec",
+  "prevIds": [
+    "25f9e942-d1f3-4d1e-a2c7-f9212ea5d8ca"
+  ],
+  "footprints": [
+    {
+      "statementType": "drop_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "tags"
+      ],
+      "writes": [
+        "s|tbl|public.tags",
+        "n|tbl|public.tags",
+        "e|tbl|public.tags",
+        "n|rel|public.tags",
+        "n|type|public.tags"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "op": "drop",
+      "key": "tables\u0000[\"public\",\"tags\"]"
+    },
+    {
+      "op": "drop",
+      "key": "columns\u0000[\"public\",\"tags\",\"id\"]"
+    },
+    {
+      "op": "drop",
+      "key": "columns\u0000[\"public\",\"tags\",\"name\"]"
+    },
+    {
+      "op": "drop",
+      "key": "columns\u0000[\"public\",\"tags\",\"created_at\"]"
+    },
+    {
+      "op": "drop",
+      "key": "pks\u0000[\"public\",\"tags\",\"tags_pkey\"]"
+    },
+    {
+      "op": "drop",
+      "key": "uniques\u0000[\"public\",\"tags\",\"tags_name_key\"]"
+    }
+  ]
+}

@@ -86,3 +86,41 @@ h1 {
 .connection--error .connection-dot {
   background: #fb7185;
 }
+
+.auth-panel {
+  display: grid;
+  justify-items: start;
+  gap: 0.9rem;
+  margin-top: 1.75rem;
+}
+
+.auth-status {
+  margin: 0;
+  color: #cbd5e1;
+}
+
+.auth-button {
+  min-height: 2.8rem;
+  padding: 0.75rem 1.1rem;
+  border: 0;
+  border-radius: 0.6rem;
+  background: #f8fafc;
+  color: #0f172a;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.auth-button:hover:not(:disabled) {
+  background: #dbeafe;
+}
+
+.auth-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.auth-error {
+  margin: 0;
+  color: #fda4af;
+}

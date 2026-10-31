@@ -7,15 +7,27 @@
     "build:aliases": "tsc-alias -p tsconfig.json",
     "start": "node dist/server.js",
     "dev": "tsx watch src/server.ts",
+    "db:local:create": "docker run -d --name music-tags-db --restart unless-stopped -e POSTGRES_DB=music_tags -e POSTGRES_USER=music_app -e POSTGRES_PASSWORD=music_dev_password -p 5432:5432 -v music-tags-postgres:/var/lib/postgresql/data postgres:17-alpine",
+    "db:local:start": "docker start music-tags-db",
     "db:generate": "drizzle-kit generate --config drizzle.config.ts",
-    "db:migrate": "drizzle-kit migrate --config drizzle.config.ts"
+    "db:migrate": "drizzle-kit migrate --config drizzle.config.ts",
+    "db:studio": "drizzle-kit studio --config drizzle.config.ts"
   },
   "dependencies": {
+    "@better-auth/core": "1.7.14",
+    "@better-auth/drizzle-adapter": "1.7.14",
+    "@better-auth/utils": "0.5.1",
+    "@better-fetch/fetch": "1.3.3",
     "@music-tag/shared": "workspace:*",
+    "better-auth": "^1.7.14",
+    "better-call": "1.4.4",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "drizzle-orm": "^0.45.4",
+    "drizzle-orm": "1.0.0-rc.5",
     "express": "^5.3.0",
+    "jose": "6.2.3",
+    "kysely": "0.29.0",
+    "nanostores": "1.3.0",
     "pg": "^8.16.3",
     "zod": "^4.6.7"
   },
@@ -24,7 +36,7 @@
     "@types/express": "^5.0.3",
     "@types/node": "^24.10.0",
     "@types/pg": "^8.15.5",
-    "drizzle-kit": "^0.31.10",
+    "drizzle-kit": "1.0.0-rc.5",
     "tsc-alias": "^1.9.9",
     "tsx": "^4.22.4",
     "typescript": "7.0.2"

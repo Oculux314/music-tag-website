@@ -1,34 +1,19 @@
 services:
-  db:
-    image: postgres:17-alpine
-    environment:
-      POSTGRES_DB: music_tags
-      POSTGRES_USER: music_app
-      POSTGRES_PASSWORD: music_dev_password
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U music_app -d music_tags"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-
   backend:
     build:
       context: .
       dockerfile: backend/Dockerfile
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
       PORT: 4000
-      DB_URL: "${DB_URL:-postgresql://music_app:music_dev_password@db:5432/music_tags}"
-      CORS_ORIGIN: http://localhost:8080
+      DB_URL: "${DB_URL:?Set DB_URL to your Neon connection string}"
+      CORS_ORIGIN: "${CORS_ORIGIN:?Set CORS_ORIGIN to your frontend URL}"
+      BETTER_AUTH_SECRET: "${BETTER_AUTH_SECRET:?Set BETTER_AUTH_SECRET}"
+      BETTER_AUTH_URL: "${BETTER_AUTH_URL:?Set BETTER_AUTH_URL to your backend URL}"
+      GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID:?Set GOOGLE_CLIENT_ID}"
+      GOOGLE_CLIENT_SECRET: "${GOOGLE_CLIENT_SECRET:?Set GOOGLE_CLIENT_SECRET}"
     ports:
-      - "4000:4000"
-    depends_on:
-      db:
-        condition: service_healthy
+      - "${BACKEND_PORT:-4000}:4000"
     healthcheck:
       test:
         [
@@ -46,12 +31,9 @@ services:
       context: .
       dockerfile: frontend/Dockerfile
       args:
-        VITE_BACKEND_URL: ${VITE_BACKEND_URL:-http://localhost:4000}
+        VITE_BACKEND_URL: "${VITE_BACKEND_URL:?Set VITE_BACKEND_URL to your public backend URL}"
     ports:
-      - "8080:80"
+      - "${FRONTEND_PORT:-8080}:80"
     depends_on:
       backend:
         condition: service_healthy
-
-volumes:
-  postgres_data:
