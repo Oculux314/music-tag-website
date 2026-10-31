@@ -1,0 +1,34 @@
+{
+  "name": "music-tag-website",
+  "private": true,
+  "type": "module",
+  "packageManager": "yarn@4.18.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "workspaces": [
+    "backend",
+    "frontend",
+    "shared"
+  ],
+  "scripts": {
+    "build": "tsc -b && yarn workspace @music-tag/backend build:aliases && yarn workspace @music-tag/frontend build:assets",
+    "start": "concurrently --kill-others-on-fail -n backend,frontend -c blue,green \"yarn workspace @music-tag/backend start\" \"yarn workspace @music-tag/frontend start\"",
+    "dev": "yarn workspace @music-tag/shared build && concurrently --kill-others-on-fail -n backend,frontend,shared -c blue,green,yellow \"yarn workspace @music-tag/backend dev\" \"yarn workspace @music-tag/frontend dev\" \"yarn workspace @music-tag/shared dev\"",
+    "lint": "oxlint --fix",
+    "lint:check": "oxlint",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "l": "yarn lint && yarn format"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6",
+    "oxfmt": "^0.75.0",
+    "oxlint": "^1.80.0",
+    "typescript": "^7.0.2"
+  },
+  "volta": {
+    "node": "22.12.0",
+    "yarn": "4.18.1"
+  }
+}

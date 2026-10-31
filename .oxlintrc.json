@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["eslint", "typescript", "unicorn", "oxc", "react", "jsx-a11y", "import"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2022": true
+  },
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "rules": {
+    "no-debugger": "error",
+    "no-duplicate-imports": "error",
+    "typescript/no-explicit-any": "error",
+    "typescript/consistent-type-imports": "error",
+    "import/no-unassigned-import": ["warn", { "allow": ["**/*.css"] }],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-no-useless-fragment": "warn",
+    "jsx-a11y/alt-text": "error"
+  },
+  "ignorePatterns": ["**/dist/**", "**/node_modules/**", "backend/drizzle/**", ".yarn/sdks/**"]
+}
