@@ -50,7 +50,7 @@ export default function App() {
       });
 
       if (error) {
-        setAuthError(error.message);
+        setAuthError(error.message ?? "Google sign-in failed.");
       }
     } catch (error) {
       setAuthError(error instanceof Error ? error.message : "Google sign-in failed.");
@@ -67,7 +67,7 @@ export default function App() {
       const { error } = await authClient.signOut();
 
       if (error) {
-        setAuthError(error.message);
+        setAuthError(error.message ?? "Sign-out failed.");
       }
     } catch (error) {
       setAuthError(error instanceof Error ? error.message : "Sign-out failed.");

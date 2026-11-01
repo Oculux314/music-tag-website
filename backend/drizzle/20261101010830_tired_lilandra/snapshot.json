@@ -1,0 +1,900 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "83f36fbb-7ad1-4256-a9c0-788eff042a71",
+  "prevIds": [
+    "d6906043-35ea-4bf5-98d3-3b99d90c63ec"
+  ],
+  "footprints": [
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "media"
+      ],
+      "writes": [
+        "s|tbl|public.media",
+        "n|tbl|public.media",
+        "e|tbl|public.media",
+        "n|rel|public.media",
+        "n|type|public.media",
+        "n|rel|public.media_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "media_group"
+      ],
+      "writes": [
+        "s|tbl|public.media_group",
+        "n|tbl|public.media_group",
+        "e|tbl|public.media_group",
+        "n|rel|public.media_group",
+        "n|type|public.media_group",
+        "n|rel|public.media_group_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "tag"
+      ],
+      "writes": [
+        "s|tbl|public.tag",
+        "n|tbl|public.tag",
+        "e|tbl|public.tag",
+        "n|rel|public.tag",
+        "n|type|public.tag",
+        "n|rel|public.tag_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "user_media"
+      ],
+      "writes": [
+        "s|tbl|public.user_media",
+        "n|tbl|public.user_media",
+        "e|tbl|public.user_media",
+        "n|rel|public.user_media",
+        "n|type|public.user_media",
+        "n|rel|public.user_media_pkey",
+        "n|rel|public.user_media_id_group_unique"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "media",
+        "media_source_idx"
+      ],
+      "writes": [
+        "s|idx|public.media_source_idx",
+        "n|idx|public.media_source_idx",
+        "e|idx|public.media_source_idx",
+        "n|rel|public.media_source_idx"
+      ],
+      "reads": [
+        "n|tbl|public.media",
+        "n|sch|public",
+        "n|col|public.media.source"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "media_group",
+        "media_group_user_id_idx"
+      ],
+      "writes": [
+        "s|idx|public.media_group_user_id_idx",
+        "n|idx|public.media_group_user_id_idx",
+        "e|idx|public.media_group_user_id_idx",
+        "n|rel|public.media_group_user_id_idx"
+      ],
+      "reads": [
+        "n|tbl|public.media_group",
+        "n|sch|public",
+        "n|col|public.media_group.user_id"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "media_group",
+        "media_group_default_media_id_idx"
+      ],
+      "writes": [
+        "s|idx|public.media_group_default_media_id_idx",
+        "n|idx|public.media_group_default_media_id_idx",
+        "e|idx|public.media_group_default_media_id_idx",
+        "n|rel|public.media_group_default_media_id_idx"
+      ],
+      "reads": [
+        "n|tbl|public.media_group",
+        "n|sch|public",
+        "n|col|public.media_group.default_media_id"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "tag",
+        "tag_media_group_id_idx"
+      ],
+      "writes": [
+        "s|idx|public.tag_media_group_id_idx",
+        "n|idx|public.tag_media_group_id_idx",
+        "e|idx|public.tag_media_group_id_idx",
+        "n|rel|public.tag_media_group_id_idx"
+      ],
+      "reads": [
+        "n|tbl|public.tag",
+        "n|sch|public",
+        "n|col|public.tag.media_group_id"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "user_media",
+        "user_media_media_id_idx"
+      ],
+      "writes": [
+        "s|idx|public.user_media_media_id_idx",
+        "n|idx|public.user_media_media_id_idx",
+        "e|idx|public.user_media_media_id_idx",
+        "n|rel|public.user_media_media_id_idx"
+      ],
+      "reads": [
+        "n|tbl|public.user_media",
+        "n|sch|public",
+        "n|col|public.user_media.media_id"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "user_media",
+        "user_media_media_group_id_idx"
+      ],
+      "writes": [
+        "s|idx|public.user_media_media_group_id_idx",
+        "n|idx|public.user_media_media_group_id_idx",
+        "e|idx|public.user_media_media_group_id_idx",
+        "n|rel|public.user_media_media_group_id_idx"
+      ],
+      "reads": [
+        "n|tbl|public.user_media",
+        "n|sch|public",
+        "n|col|public.user_media.media_group_id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "media_group"
+      ],
+      "writes": [
+        "s|fk|public.media_group.media_group_user_id_user_id_fkey",
+        "n|fk|public.media_group.media_group_user_id_user_id_fkey",
+        "e|fk|public.media_group.media_group_user_id_user_id_fkey",
+        "n|con|public.media_group.media_group_user_id_user_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.media_group",
+        "n|sch|public",
+        "n|tbl|public.user",
+        "n|sch|public",
+        "n|col|public.media_group.user_id",
+        "n|col|public.user.id",
+        "e|uniqueness|public.user.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "media_group"
+      ],
+      "writes": [
+        "s|fk|public.media_group.media_group_default_media_same_group_fkey",
+        "n|fk|public.media_group.media_group_default_media_same_group_fkey",
+        "e|fk|public.media_group.media_group_default_media_same_group_fkey",
+        "n|con|public.media_group.media_group_default_media_same_group_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.media_group",
+        "n|sch|public",
+        "n|tbl|public.user_media",
+        "n|sch|public",
+        "n|col|public.media_group.default_media_id",
+        "n|col|public.media_group.id",
+        "n|col|public.user_media.id",
+        "n|col|public.user_media.media_group_id",
+        "e|uniqueness|public.user_media.id.media_group_id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "tag"
+      ],
+      "writes": [
+        "s|fk|public.tag.tag_media_group_id_media_group_id_fkey",
+        "n|fk|public.tag.tag_media_group_id_media_group_id_fkey",
+        "e|fk|public.tag.tag_media_group_id_media_group_id_fkey",
+        "n|con|public.tag.tag_media_group_id_media_group_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.tag",
+        "n|sch|public",
+        "n|tbl|public.media_group",
+        "n|sch|public",
+        "n|col|public.tag.media_group_id",
+        "n|col|public.media_group.id",
+        "e|uniqueness|public.media_group.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "user_media"
+      ],
+      "writes": [
+        "s|fk|public.user_media.user_media_media_id_media_id_fkey",
+        "n|fk|public.user_media.user_media_media_id_media_id_fkey",
+        "e|fk|public.user_media.user_media_media_id_media_id_fkey",
+        "n|con|public.user_media.user_media_media_id_media_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.user_media",
+        "n|sch|public",
+        "n|tbl|public.media",
+        "n|sch|public",
+        "n|col|public.user_media.media_id",
+        "n|col|public.media.id",
+        "e|uniqueness|public.media.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "user_media"
+      ],
+      "writes": [
+        "s|fk|public.user_media.user_media_media_group_id_media_group_id_fkey",
+        "n|fk|public.user_media.user_media_media_group_id_media_group_id_fkey",
+        "e|fk|public.user_media.user_media_media_group_id_media_group_id_fkey",
+        "n|con|public.user_media.user_media_media_group_id_media_group_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.user_media",
+        "n|sch|public",
+        "n|tbl|public.media_group",
+        "n|sch|public",
+        "n|col|public.user_media.media_group_id",
+        "n|col|public.media_group.id",
+        "e|uniqueness|public.media_group.id"
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "media",
+        "isRlsEnabled": false,
+        "entityType": "tables"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "media_group",
+        "isRlsEnabled": false,
+        "entityType": "tables"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "tag",
+        "isRlsEnabled": false,
+        "entityType": "tables"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "user_media",
+        "isRlsEnabled": false,
+        "entityType": "tables"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media",
+        "name": "id",
+        "type": "uuid",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": "gen_random_uuid()",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media",
+        "name": "source",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media",
+        "name": "name",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media_group",
+        "name": "id",
+        "type": "uuid",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": "gen_random_uuid()",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media_group",
+        "name": "user_id",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media_group",
+        "name": "name",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media_group",
+        "name": "default_media_id",
+        "type": "uuid",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "tag",
+        "name": "id",
+        "type": "uuid",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": "gen_random_uuid()",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "tag",
+        "name": "name",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "tag",
+        "name": "media_group_id",
+        "type": "uuid",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "user_media",
+        "name": "id",
+        "type": "uuid",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": "gen_random_uuid()",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "user_media",
+        "name": "media_id",
+        "type": "uuid",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "user_media",
+        "name": "media_group_id",
+        "type": "uuid",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "user_media",
+        "name": "name",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media",
+        "name": "media_source_idx",
+        "nameExplicit": true,
+        "columns": [
+          {
+            "value": "source",
+            "isExpression": false,
+            "asc": true,
+            "nullsFirst": false,
+            "opclass": null
+          }
+        ],
+        "isUnique": false,
+        "where": null,
+        "with": "",
+        "method": "btree",
+        "concurrently": false,
+        "entityType": "indexes"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media_group",
+        "name": "media_group_user_id_idx",
+        "nameExplicit": true,
+        "columns": [
+          {
+            "value": "user_id",
+            "isExpression": false,
+            "asc": true,
+            "nullsFirst": false,
+            "opclass": null
+          }
+        ],
+        "isUnique": false,
+        "where": null,
+        "with": "",
+        "method": "btree",
+        "concurrently": false,
+        "entityType": "indexes"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media_group",
+        "name": "media_group_default_media_id_idx",
+        "nameExplicit": true,
+        "columns": [
+          {
+            "value": "default_media_id",
+            "isExpression": false,
+            "asc": true,
+            "nullsFirst": false,
+            "opclass": null
+          }
+        ],
+        "isUnique": false,
+        "where": null,
+        "with": "",
+        "method": "btree",
+        "concurrently": false,
+        "entityType": "indexes"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "tag",
+        "name": "tag_media_group_id_idx",
+        "nameExplicit": true,
+        "columns": [
+          {
+            "value": "media_group_id",
+            "isExpression": false,
+            "asc": true,
+            "nullsFirst": false,
+            "opclass": null
+          }
+        ],
+        "isUnique": false,
+        "where": null,
+        "with": "",
+        "method": "btree",
+        "concurrently": false,
+        "entityType": "indexes"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "user_media",
+        "name": "user_media_media_id_idx",
+        "nameExplicit": true,
+        "columns": [
+          {
+            "value": "media_id",
+            "isExpression": false,
+            "asc": true,
+            "nullsFirst": false,
+            "opclass": null
+          }
+        ],
+        "isUnique": false,
+        "where": null,
+        "with": "",
+        "method": "btree",
+        "concurrently": false,
+        "entityType": "indexes"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "user_media",
+        "name": "user_media_media_group_id_idx",
+        "nameExplicit": true,
+        "columns": [
+          {
+            "value": "media_group_id",
+            "isExpression": false,
+            "asc": true,
+            "nullsFirst": false,
+            "opclass": null
+          }
+        ],
+        "isUnique": false,
+        "where": null,
+        "with": "",
+        "method": "btree",
+        "concurrently": false,
+        "entityType": "indexes"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media_group",
+        "name": "media_group_user_id_user_id_fkey",
+        "nameExplicit": false,
+        "columns": [
+          "user_id"
+        ],
+        "schemaTo": "public",
+        "tableTo": "user",
+        "columnsTo": [
+          "id"
+        ],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE",
+        "entityType": "fks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media_group",
+        "name": "media_group_default_media_same_group_fkey",
+        "nameExplicit": true,
+        "columns": [
+          "default_media_id",
+          "id"
+        ],
+        "schemaTo": "public",
+        "tableTo": "user_media",
+        "columnsTo": [
+          "id",
+          "media_group_id"
+        ],
+        "onUpdate": "NO ACTION",
+        "onDelete": "NO ACTION",
+        "entityType": "fks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "tag",
+        "name": "tag_media_group_id_media_group_id_fkey",
+        "nameExplicit": false,
+        "columns": [
+          "media_group_id"
+        ],
+        "schemaTo": "public",
+        "tableTo": "media_group",
+        "columnsTo": [
+          "id"
+        ],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE",
+        "entityType": "fks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "user_media",
+        "name": "user_media_media_id_media_id_fkey",
+        "nameExplicit": false,
+        "columns": [
+          "media_id"
+        ],
+        "schemaTo": "public",
+        "tableTo": "media",
+        "columnsTo": [
+          "id"
+        ],
+        "onUpdate": "NO ACTION",
+        "onDelete": "NO ACTION",
+        "entityType": "fks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "user_media",
+        "name": "user_media_media_group_id_media_group_id_fkey",
+        "nameExplicit": false,
+        "columns": [
+          "media_group_id"
+        ],
+        "schemaTo": "public",
+        "tableTo": "media_group",
+        "columnsTo": [
+          "id"
+        ],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE",
+        "entityType": "fks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media",
+        "name": "media_pkey",
+        "columns": [
+          "id"
+        ],
+        "nameExplicit": false,
+        "entityType": "pks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "media_group",
+        "name": "media_group_pkey",
+        "columns": [
+          "id"
+        ],
+        "nameExplicit": false,
+        "entityType": "pks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "tag",
+        "name": "tag_pkey",
+        "columns": [
+          "id"
+        ],
+        "nameExplicit": false,
+        "entityType": "pks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "user_media",
+        "name": "user_media_pkey",
+        "columns": [
+          "id"
+        ],
+        "nameExplicit": false,
+        "entityType": "pks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "user_media",
+        "name": "user_media_id_group_unique",
+        "nameExplicit": true,
+        "columns": [
+          "id",
+          "media_group_id"
+        ],
+        "nullsNotDistinct": false,
+        "entityType": "uniques"
+      }
+    }
+  ]
+}
