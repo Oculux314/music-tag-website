@@ -12,9 +12,10 @@
     "shared"
   ],
   "scripts": {
-    "build": "tsc -b && yarn workspace @music-tag/backend build:aliases && yarn workspace @music-tag/frontend build:assets",
+    "build": "yarn graphql:codegen && tsc -b && yarn workspace @music-tag/backend build:aliases && yarn workspace @music-tag/frontend build:assets",
     "start": "concurrently --kill-others-on-fail -n backend,frontend -c blue,green \"yarn workspace @music-tag/backend start\" \"yarn workspace @music-tag/frontend start\"",
-    "dev": "(yarn workspace @music-tag/backend db:local:start || yarn workspace @music-tag/backend db:local:create) && yarn workspace @music-tag/shared build && concurrently --kill-others-on-fail -n backend,frontend,shared,db,studio -c blue,green,yellow,red,#FFA500 \"yarn workspace @music-tag/backend dev\" \"yarn workspace @music-tag/frontend dev\" \"yarn workspace @music-tag/shared dev\" \"docker logs -f music-tags-db\" \"yarn workspace @music-tag/backend db:studio\"",
+    "dev": "(yarn workspace @music-tag/backend db:local:start || yarn workspace @music-tag/backend db:local:create) && yarn workspace @music-tag/shared build && concurrently --kill-others-on-fail -n backend,frontend,shared,db,studio,gql -c blue,green,yellow,red,#FFA500,cyan \"yarn workspace @music-tag/backend dev\" \"yarn workspace @music-tag/frontend dev\" \"yarn workspace @music-tag/shared dev\" \"docker logs -f music-tags-db\" \"yarn workspace @music-tag/backend db:studio\" \"yarn graphql:codegen --watch\"",
+    "graphql:codegen": "graphql-codegen --config codegen.ts",
     "db:studio": "yarn workspace @music-tag/backend db:studio",
     "lint": "oxlint --fix",
     "lint:check": "oxlint",
@@ -23,7 +24,12 @@
     "l": "yarn lint && yarn format"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^7.4.6",
+    "@graphql-codegen/client-preset": "^6.2.3",
+    "@graphql-codegen/typescript": "^6.1.2",
+    "@graphql-codegen/typescript-resolvers": "^6.1.1",
     "concurrently": "^10.0.6",
+    "graphql": "16.11.0",
     "oxfmt": "^0.75.0",
     "oxlint": "^1.80.0",
     "typescript": "^7.0.2"

@@ -1,11 +1,11 @@
 import { defineRelations } from "drizzle-orm";
 import { account } from "./tables/account";
 import { media } from "./tables/media";
-import { mediaGroup } from "./tables/media-group";
+import { mediaGroup } from "./tables/mediaGroup";
 import { session } from "./tables/session";
 import { tag } from "./tables/tag";
 import { user } from "./tables/user";
-import { userMedia } from "./tables/user-media";
+import { userMedia } from "./tables/userMedia";
 import { verification } from "./tables/verification";
 
 export * from "./tables/account";
@@ -14,9 +14,9 @@ export * from "./tables/user";
 export * from "./tables/verification";
 
 export * from "./tables/media";
-export * from "./tables/media-group";
+export * from "./tables/mediaGroup";
 export * from "./tables/tag";
-export * from "./tables/user-media";
+export * from "./tables/userMedia";
 
 export const dbRelations = defineRelations(
   { user, session, account, verification, media, mediaGroup, userMedia, tag },

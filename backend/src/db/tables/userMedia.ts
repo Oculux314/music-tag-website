@@ -12,7 +12,7 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 import { media } from "./media";
-import { mediaGroup } from "./media-group";
+import { mediaGroup } from "./mediaGroup";
 
 export const userMedia = pgTable(
   "user_media",

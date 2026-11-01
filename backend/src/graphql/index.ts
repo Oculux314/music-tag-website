@@ -4,13 +4,11 @@ import { fromNodeHeaders } from "better-auth/node";
 import type { RequestHandler } from "express";
 import { db } from "@/db";
 import { auth } from "@/utils/auth";
+import type { GraphQLContext } from "./contextType";
 import { resolvers } from "./resolvers";
-import { typeDefs } from "./type-defs";
+import { typeDefs } from "./typeDefs";
 
-export type GraphQLContext = {
-  db: typeof db;
-  session: Awaited<ReturnType<typeof auth.api.getSession>>;
-};
+export type { GraphQLContext } from "./contextType";
 
 const apolloServer = new ApolloServer<GraphQLContext>({
   typeDefs,

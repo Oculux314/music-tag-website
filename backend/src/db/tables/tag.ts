@@ -4,7 +4,7 @@ import {
   createUpdateSchema,
 } from "drizzle-orm/zod";
 import { index, pgTable, text, uuid } from "drizzle-orm/pg-core";
-import { mediaGroup } from "./media-group";
+import { mediaGroup } from "./mediaGroup";
 
 export const tag = pgTable(
   "tag",

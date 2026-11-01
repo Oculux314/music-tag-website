@@ -5,7 +5,7 @@ import {
 } from "drizzle-orm/zod";
 import { foreignKey, index, pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { user } from "./user";
-import { userMedia } from "./user-media";
+import { userMedia } from "./userMedia";
 
 export const mediaGroup = pgTable(
   "media_group",
