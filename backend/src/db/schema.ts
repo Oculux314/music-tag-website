@@ -1,13 +1,13 @@
 import { defineRelations } from "drizzle-orm";
-import { account } from "./tables/account.js";
-import { session } from "./tables/session.js";
-import { user } from "./tables/user.js";
-import { verification } from "./tables/verification.js";
+import { account } from "./tables/account";
+import { session } from "./tables/session";
+import { user } from "./tables/user";
+import { verification } from "./tables/verification";
 
-export * from "./tables/account.js";
-export * from "./tables/session.js";
-export * from "./tables/user.js";
-export * from "./tables/verification.js";
+export * from "./tables/account";
+export * from "./tables/session";
+export * from "./tables/user";
+export * from "./tables/verification";
 
 export const authRelations = defineRelations({ user, session, account, verification }, (r) => ({
   user: {

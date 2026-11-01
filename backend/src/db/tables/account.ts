@@ -1,6 +1,6 @@
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from "drizzle-orm/zod";
 import { index, pgTable, text, timestamp } from "drizzle-orm/pg-core";
-import { user } from "./user.js";
+import { user } from "./user";
 
 export const account = pgTable(
   "account",

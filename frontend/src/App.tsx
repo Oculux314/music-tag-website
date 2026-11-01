@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { HealthResponse } from "@music-tag/shared";
-import { env } from "./env.js";
-import { authClient } from "./auth-client.js";
+import { env } from "./env";
+import { authClient } from "./auth-client";
 
 type ConnectionState = "checking" | "connected" | "error";
 

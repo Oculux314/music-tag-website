@@ -2,8 +2,8 @@ import cors from "cors";
 import express from "express";
 import { toNodeHandler } from "better-auth/node";
 import type { HealthResponse } from "@music-tag/shared";
-import { auth } from "./utils/auth.js";
-import { env } from "./utils/env.js";
+import { auth } from "./utils/auth";
+import { env } from "./utils/env";
 
 export const app = express();
 
