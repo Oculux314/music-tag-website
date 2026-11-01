@@ -2,4 +2,8 @@ export type Env = {
   readonly VITE_BACKEND_URL: string;
 };
 
-export const env = import.meta.env as unknown as Env;
+const rawEnv = import.meta.env;
+
+export const env: Env = {
+  VITE_BACKEND_URL: rawEnv.VITE_BACKEND_URL.replace(/\/+$/, ""), // Remove trailing slashes
+};

@@ -5,8 +5,6 @@ import { authClient } from "./auth-client";
 
 type ConnectionState = "checking" | "connected" | "error";
 
-const backendUrl = env.VITE_BACKEND_URL.replace(/\/$/, "");
-
 export default function App() {
   const [connection, setConnection] = useState<ConnectionState>("checking");
   const [authError, setAuthError] = useState<string | null>(null);
@@ -18,7 +16,7 @@ export default function App() {
 
     async function checkBackend() {
       try {
-        const response = await fetch(`${backendUrl}/api/health`, {
+        const response = await fetch(`${env.VITE_BACKEND_URL}/api/health`, {
           signal: controller.signal,
         });
 
