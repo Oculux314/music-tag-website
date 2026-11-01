@@ -14,12 +14,12 @@
   "scripts": {
     "build": "tsc -b && yarn workspace @music-tag/backend build:aliases && yarn workspace @music-tag/frontend build:assets",
     "start": "concurrently --kill-others-on-fail -n backend,frontend -c blue,green \"yarn workspace @music-tag/backend start\" \"yarn workspace @music-tag/frontend start\"",
-    "dev": "(yarn workspace @music-tag/backend db:local:start || yarn workspace @music-tag/backend db:local:create) && yarn workspace @music-tag/shared build && concurrently --kill-others-on-fail -n backend,frontend,shared,db -c blue,green,yellow,red \"yarn workspace @music-tag/backend dev\" \"yarn workspace @music-tag/frontend dev\" \"yarn workspace @music-tag/shared dev\" \"docker logs -f music-tags-db\"",
+    "dev": "(yarn workspace @music-tag/backend db:local:start || yarn workspace @music-tag/backend db:local:create) && yarn workspace @music-tag/shared build && concurrently --kill-others-on-fail -n backend,frontend,shared,db,studio -c blue,green,yellow,red,#FFA500 \"yarn workspace @music-tag/backend dev\" \"yarn workspace @music-tag/frontend dev\" \"yarn workspace @music-tag/shared dev\" \"docker logs -f music-tags-db\" \"yarn workspace @music-tag/backend db:studio\"",
+    "db:studio": "yarn workspace @music-tag/backend db:studio",
     "lint": "oxlint --fix",
     "lint:check": "oxlint",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "db:studio": "yarn workspace @music-tag/backend db:studio",
     "l": "yarn lint && yarn format"
   },
   "devDependencies": {
